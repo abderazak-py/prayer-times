@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:prayer/Screens/home.dart';
-// import 'package:provider/provider.dart';
-// import '../Providers/Times_Provider.dart';
+import 'package:prayer/help/Globals.dart';
+
 
 class salatCard extends StatefulWidget {
-  salatCard({Key? key, required this.salatName, required this.salatTime})
-      : super(key: key);
+  salatCard({ required this.salatName, required this.salatTime});
 
   String? salatName;
   String? salatTime;

@@ -9,14 +9,14 @@ class PrayerTimesModel {
   String? temp;
 
   PrayerTimesModel({
-    required this.status,
-    required this.address,
-    required this.fajr,
-    required this.dhuhr,
-    required this.asr,
-    required this.maghrib,
-    required this.isha,
-    required this.temp,
+     this.status,
+     this.address,
+     this.fajr,
+     this.dhuhr,
+     this.asr,
+     this.maghrib,
+     this.isha,
+     this.temp,
   });
 
   factory PrayerTimesModel.fromJson(dynamic data) {
@@ -33,9 +33,5 @@ class PrayerTimesModel {
     );
   }
 
-  @override
-  String toString() {
-    return 'status: $status, address: $address, temp: $temp, isha time: $isha';
-  }
 
 }

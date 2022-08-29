@@ -4,30 +4,27 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prayer/Models/Prayer_model.dart';
 import 'package:prayer/Providers/Times_Provider.dart';
 import 'package:prayer/Services/Prayer_Services.dart';
+import 'package:prayer/help/Globals.dart';
 import 'package:provider/provider.dart';
-
-import 'home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class SearchPage extends StatefulWidget {
-  SearchPage({Key? key}) : super(key: key);
+  const SearchPage({Key? key}) : super(key: key);
 
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
+
   String? cityName;
-  final snackBar = SnackBar(
-    content: const Text('Yay! A SnackBar!'),
-  );
-  bool isLoading = false;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(context) {
     return MaterialApp(
       home:Scaffold(
-            backgroundColor: Color(0xff1E1D2B),
+            backgroundColor: pressed==false ? Color(0xff1E1D2B):Colors.white,
             body:
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +39,7 @@ class _SearchPageState extends State<SearchPage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    color: Color(0xff0177FB),
+                    color: pressed == false ? Color(0xff0177FB) : Color(0xff00B761),
                     child: Container(
                         padding: EdgeInsets.only(
                             left: 20, right: 25, bottom: 12, top: 12),
@@ -87,24 +84,22 @@ class _SearchPageState extends State<SearchPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: TextField(
                     onSubmitted: (data) async {
-                      isLoading=true;
                       setState((){});
                       cityName = data;
                       PrayerTimesService service = PrayerTimesService();
                       PrayerTimesModel? times =
                           await service.getTimes(cityName: cityName!);
                       Provider.of<TimesProvider>(context, listen: false).timeData = times;
-                      isLoading=false;
-                      setState((){});
-
-
                       if('${Provider.of<TimesProvider>(context, listen: false).timeData?.status.toString()}' == "Success."){
+                        city = cityName!;
+                        final pref =
+                        await SharedPreferences.getInstance();
+                        pref.setString('city', city);
+                        print(city);
                         Navigator.pop(context);
                       }
-                      else
-                      {ScaffoldMessenger.of(context).showSnackBar(snackBar);print('snackbar');}
+                     // else {ScaffoldMessenger.of(context).showSnackBar(snackBar);print('snackbar');}
                       },
-
 
                     cursorColor: Colors.grey,
                     cursorHeight: 25,
@@ -121,12 +116,12 @@ class _SearchPageState extends State<SearchPage> {
                             await service.getTimes(cityName: cityName!);
                         Provider.of<TimesProvider>(context, listen: false).timeData = times;
 
-                        if('${Provider.of<TimesProvider>(context, listen: false).timeData!.status.toString()}' == "Success."){
-                          city = cityName;
+                        if(Provider.of<TimesProvider>(context, listen: false).timeData!.status.toString() == "Success."){
+                          city = cityName!;
+                          final pref =
+                          await SharedPreferences.getInstance();
+                          pref.setString('city', city);
                           Navigator.pop(context);
-                        }
-                        else {
-
                         }
                       },
                         color: Colors.black54,
@@ -193,7 +188,7 @@ class _SearchPageState extends State<SearchPage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    color: Color(0xff0177FB),
+                    color: pressed == false ? Color(0xff0177FB) : Color(0xff00B761),
                     child: Container(
                         padding:
                             EdgeInsets.symmetric(vertical: 20, horizontal: 30),

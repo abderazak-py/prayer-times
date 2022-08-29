@@ -4,6 +4,7 @@ import 'package:prayer/Screens/Search_page.dart';
 import 'package:provider/provider.dart';
 import 'Screens/home.dart';
 
+
 void main() {
   runApp(PrayerApp());
 }
@@ -24,4 +25,5 @@ class PrayerApp extends StatelessWidget {
       ),
     );
   }
+
 }

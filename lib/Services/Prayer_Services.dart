@@ -1,11 +1,10 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:prayer/Models/Prayer_model.dart';
 
 class PrayerTimesService {
 
-  Future<PrayerTimesModel?> getTimes({required String cityName}) async {
+  Future<PrayerTimesModel?> getTimes({ String? cityName}) async {
     PrayerTimesModel? PrayerModel;
     try {
       String baseUrl = 'https://muslimsalat.com';
