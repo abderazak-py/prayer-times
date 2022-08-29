@@ -218,13 +218,13 @@ class _HomePageState extends State<HomePage> {
                             flex: 6,
                           ),
                           IconButton(
-                              onPressed: () {
-                                setState(() async {
+                              onPressed: () async {
+                                setState((){
                                   pressed = !pressed;
-                                  final pref =
-                                      await SharedPreferences.getInstance();
-                                  pref.setBool('lightMode', pressed);
                                 });
+                                final pref =
+                                    await SharedPreferences.getInstance();
+                                pref.setBool('lightMode', pressed);
                               },
                               icon: pressed == false
                                   ? Icon(FontAwesomeIcons.solidSun,
