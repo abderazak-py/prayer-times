@@ -64,9 +64,7 @@ class _SearchPageState extends State<SearchPage> {
                         )),
                   ),
                 ),
-                Spacer(
-                  flex: 1,
-                ),
+                Spacer(flex: 1),
                 Padding(
                   padding: const EdgeInsets.only(left: 40),
                   child: Text(

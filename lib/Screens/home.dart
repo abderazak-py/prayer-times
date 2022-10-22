@@ -28,11 +28,7 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       home: Scaffold(
           backgroundColor: pressed == false ? Color(0xff1E1D2B) : Colors.white,
-          body: Provider.of<TimesProvider>(context)
-                      .timeData
-                      ?.status
-                      ?.toString() ==
-                  "Failed."
+          body: Provider.of<TimesProvider>(context).timeData?.status?.toString() == "Failed."
               ? Column(
                   children: [
                     SizedBox(height: 60),
