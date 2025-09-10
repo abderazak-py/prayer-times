@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -165,35 +166,35 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                       SizedBox(height: 30),
-                      salatCard(
+                      SalatCard(
                           salatName: 'Fajr',
                           salatTime: Provider.of<TimesProvider>(context)
                                   .timeData
                                   ?.fajr
                                   .toString() ??
                               '--:-- --'),
-                      salatCard(
+                      SalatCard(
                           salatName: 'Dhuhr',
                           salatTime: Provider.of<TimesProvider>(context)
                                   .timeData
                                   ?.dhuhr
                                   .toString() ??
                               '--:-- --'),
-                      salatCard(
+                      SalatCard(
                           salatName: 'Asr',
                           salatTime: Provider.of<TimesProvider>(context)
                                   .timeData
                                   ?.asr
                                   .toString() ??
                               '--:-- --'),
-                      salatCard(
+                      SalatCard(
                           salatName: 'Maghrib',
                           salatTime: Provider.of<TimesProvider>(context)
                                   .timeData
                                   ?.maghrib
                                   .toString() ??
                               '--:-- --'),
-                      salatCard(
+                      SalatCard(
                           salatName: 'isha',
                           salatTime: Provider.of<TimesProvider>(context)
                                   .timeData
@@ -247,7 +248,9 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       city = pref.getString('city')!;
       pressed = pref.getBool('lightMode')!;
-      print('city is $city');
+      if (kDebugMode) {
+        print('city is $city');
+      }
     });
     PrayerTimesService service = PrayerTimesService();
     PrayerTimesModel? times = await service.getTimes(cityName: city);

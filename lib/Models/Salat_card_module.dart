@@ -4,17 +4,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:prayer/help/Globals.dart';
 
 
-class salatCard extends StatefulWidget {
-  salatCard({ required this.salatName, required this.salatTime});
+class SalatCard extends StatefulWidget {
+  const SalatCard({ required this.salatName, required this.salatTime, Key? key }) : super(key: key);
 
-  String? salatName;
-  String? salatTime;
+  final String? salatName;
+  final String? salatTime;
 
   @override
-  State<salatCard> createState() => _salatCardState();
+  State<SalatCard> createState() => _SalatCardState();
 }
 
-class _salatCardState extends State<salatCard> {
+class _SalatCardState extends State<SalatCard> {
   bool notify = true;
 
   @override
